@@ -26,11 +26,9 @@ class Controller():
 
     def list(self, nu="all"):
         query = self.db.get_item_query()
-        ptable = PrettyTable(["运单号", "描述", "最后一次更新时间", "最后一次更新信息"])
-        ptable.sort_key("最后一次更新时间")
-        ptable.reversesort = True
+        ptable = PrettyTable(["运单号", "描述", "状态", "最后一次更新时间", "最后一次更新信息"])
         for item in query:
-            ptable.add_row([item.nu, item.description, item.lastUpdateTime, item.lastUpdateInfo])
+            ptable.add_row([item.nu, item.description, state[item.state], item.lastUpdateTime, item.lastUpdateInfo])
         print(ptable)
 
     def get_com_code(self, nu):
