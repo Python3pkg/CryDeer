@@ -125,7 +125,7 @@ class Database:
             item = self.session.query(Item)\
                        .filter(Item.nu == nu)\
                        .one()
-            print(item)
+            return item
         except NoResultFound:
             print("无法找到")
 
