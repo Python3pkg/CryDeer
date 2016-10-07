@@ -90,4 +90,4 @@ ENV/
 
 # custom
 test.py
-test.db
+*.db
