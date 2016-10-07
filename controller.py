@@ -31,6 +31,17 @@ class Controller():
             ptable.add_row([item.nu, item.description, state[item.state], item.lastUpdateTime, item.lastUpdateInfo])
         print(ptable)
 
+    def show_info(self, s_nu):
+        nu = self.db.get_full_nu(s_nu)
+        if nu:
+            query = self.db.get_info_query(nu)
+            ptable = PrettyTable(["运单号", "时间", "信息"])
+            for info in query:
+                ptable.add_row([info.nu, info.time, info.context])
+            print(ptable)
+        else:
+            print("单号不存在")
+
     def get_com_code(self, nu):
         url = "http://www.kuaidi100.com/autonumber/autoComNum?text=" + nu
         data = self.session.get(url).text

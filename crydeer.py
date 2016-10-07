@@ -15,7 +15,7 @@ if __name__ == "__main__":
                 controller.new_item(argv[2])
         elif argv[1] == "list":
             if len(argv) == 3:
-                pass
+                controller.show_info(argv[2])
             else:
                 controller.list()
         elif argv[1] == "update":

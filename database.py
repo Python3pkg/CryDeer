@@ -82,6 +82,12 @@ class Database:
     def get_all_nu(self):
         return [item.nu for item in self.session.query(Item)]
 
+    def get_full_nu(self, short_nu):
+        for nu in self.get_all_nu():
+            if nu[:len(short_nu)] == short_nu:
+                return nu
+        return None
+
     def has_item(self, nu):
         query = self.session.query(Item).filter(Item.nu == nu)
         return query.count() > 0
@@ -158,6 +164,9 @@ class Database:
 
     def get_item_query(self):
         return self.session.query(Item)
+
+    def get_info_query(self, nu):
+        return self.session.query(Info).filter(Info.nu == nu)
 
     def display(self):
         for instance in self.session.query(Item)\
