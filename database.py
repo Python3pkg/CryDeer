@@ -2,6 +2,7 @@
 # _*_ coding:utf-8 _*_
 
 # import sqlite3
+import os
 from sqlalchemy import create_engine, MetaData, Column, Integer, String
 from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy.ext.declarative import declarative_base
@@ -67,9 +68,9 @@ class Database:
     session = ""
     infos = []
 
-    def __init__(self, db_name="items.db"):
+    def __init__(self, db_name=".items.db"):
         self.db_name = db_name
-        self.db_location = "sqlite:///./" + db_name
+        self.db_location = "sqlite:///" + os.path.expanduser("~") +"/" + db_name
         self.engine = create_engine(self.db_location, echo=False)
         self.metadata = MetaData(self.engine)
         Session = sessionmaker(bind=self.engine)
@@ -83,10 +84,11 @@ class Database:
         return [item.nu for item in self.session.query(Item)]
 
     def get_full_nu(self, short_nu):
+        nus = []
         for nu in self.get_all_nu():
             if nu[:len(short_nu)] == short_nu:
-                return nu
-        return None
+                nus.append(nu)
+        return nus
 
     def has_item(self, nu):
         query = self.session.query(Item).filter(Item.nu == nu)
@@ -166,7 +168,7 @@ class Database:
         return self.session.query(Item)
 
     def get_info_query(self, nu):
-        return self.session.query(Info).filter(Info.nu == nu)
+        return self.session.query(Info).filter(Info.nu == nu).order_by(Info.time)
 
     def display(self):
         for instance in self.session.query(Item)\
