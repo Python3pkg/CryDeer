@@ -9,10 +9,13 @@ def main():
     controller = Controller()
     if len(argv) > 1:
         if argv[1] == "n" or argv[1] == "new":
-            if len(argv) >= 4:
-                controller.new_item(argv[2], argv[3])
+            if len(argv) == 2:
+                print("请输入单号")
             else:
-                controller.new_item(argv[2])
+                if len(argv) >= 4:
+                    controller.new_item(argv[2], argv[3])
+                else:
+                    controller.new_item(argv[2])
         elif argv[1] == "l" or argv[1] == "list":
             if len(argv) == 3:
                 controller.show_info(argv[2])
@@ -28,7 +31,7 @@ def main():
         else:
             print("命令错误")
     else:
-        print("233")
+        print("//TODO: complete help")
 
 if __name__ == "__main__":
     main()
