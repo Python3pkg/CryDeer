@@ -1,1 +1,2 @@
-# CryDeer —— 命令行快递助手
+# CryDeer
+A CLI express package tracker(written in pythin3)
