@@ -2,7 +2,7 @@
 # _*_ coding:utf-8 _*_
 
 from sys import argv
-from .controller import Controller
+from CryDeer.controller import Controller
 
 
 def main():

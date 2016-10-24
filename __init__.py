@@ -3,4 +3,3 @@
 
 from . import database
 from . import controller
-from . import proxy
