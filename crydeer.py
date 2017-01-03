@@ -2,36 +2,51 @@
 # _*_ coding:utf-8 _*_
 
 from sys import argv
+import sys
+import os
+sys.path.append(os.path.abspath(".."))
+import CryDeer
 from CryDeer.controller import Controller
+import click
 
 
+controller = Controller()
+
+
+@click.group()
 def main():
-    controller = Controller()
-    if len(argv) > 1:
-        if argv[1] == "n" or argv[1] == "new":
-            if len(argv) == 2:
-                print("请输入单号")
-            else:
-                if len(argv) >= 4:
-                    controller.new_item(argv[2], argv[3])
-                else:
-                    controller.new_item(argv[2])
-        elif argv[1] == "l" or argv[1] == "list":
-            if len(argv) == 3:
-                controller.show_info(argv[2])
-            else:
-                controller.list()
-        elif argv[1] == "u" or argv[1] == "update":
-            controller.update_all()
-        elif argv[1] == "d" or argv[1] == "delete":
-            if len(argv) == 3:
-                controller.delete_item(argv[2])
-            else:
-                print("命令错误")
-        else:
-            print("命令错误")
-    else:
-        print("//TODO: complete help")
+    pass
+
+
+@main.command("add", help="新增包裹")
+@click.argument("number")
+@click.option("--description")
+def add_package(number, description):
+    controller.new_item(number, description)
+
+
+@main.command("remove", help="新增包裹")
+@click.argument("number")
+@click.option("--description")
+def remove_package(number, description):
+    controller.delete_item(number)
+
+
+@main.command("list", help="显示所有包裹信息")
+def list_packages(number):
+    controller.list()
+
+
+@main.command("detail", help="显示包裹详细信息")
+@click.argument("number")
+def show_detail(number):
+    controller.show_info(number)
+
+
+@main.command("update", help="更新包裹信息")
+def update_packages():
+    controller.update_all()
+
 
 if __name__ == "__main__":
     main()

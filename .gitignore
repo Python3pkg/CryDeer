@@ -91,3 +91,5 @@ ENV/
 # custom
 test.py
 *.db
+.idea
+.idea/
