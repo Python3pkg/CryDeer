@@ -13,21 +13,21 @@ import click
 controller = Controller()
 
 
-@click.group()
+@click.group(help="包裹查询助手")
 def main():
     pass
 
 
 @main.command("add", help="新增包裹")
 @click.argument("number")
-@click.option("--description")
+@click.option("-d", "--description", help="包裹描述")
 def add_package(number, description):
     controller.new_item(number, description)
 
 
 @main.command("remove", help="新增包裹")
 @click.argument("number")
-@click.option("--description")
+@click.option("-d", "--description", help="包裹描述")
 def remove_package(number, description):
     controller.delete_item(number)
 
