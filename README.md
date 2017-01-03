@@ -4,24 +4,30 @@ A CLI express package helper
 ## Usage
 ### Add New Package
 ```
-crydeer n [tracking number] [desctription]
+crydeer add [tracking number] --description [desctription]
 ```
 
-## Delete Package
+### Delete Package
 
 ```
-crydeer d [the first few digit of the number]
+crydeer delete [the first few digit of the number]
+```
+
+### Show Package Details
+
+```
+crydeer detail [the first few digit of the number]
 ```
 
 ### List Package
 
 ```
-crydeer l
+crydeer list
 ```
 
-## Update Information
+### Update Information
 
 ```
-crydeer u
+crydeer update
 ```
 
