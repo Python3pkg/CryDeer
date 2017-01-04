@@ -4,9 +4,7 @@
 from sys import argv
 import sys
 import os
-sys.path.append(os.path.abspath(".."))
-import CryDeer
-from CryDeer.controller import Controller
+from .controller import Controller
 import click
 
 
