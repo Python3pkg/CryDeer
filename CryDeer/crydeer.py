@@ -31,7 +31,7 @@ def remove_package(number, description):
 
 
 @main.command("list", help="显示所有包裹信息")
-def list_packages(number):
+def list_packages():
     controller.list()
 
 

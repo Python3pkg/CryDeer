@@ -68,9 +68,12 @@ class Database:
     session = ""
     infos = []
 
-    def __init__(self, db_name=".items.db"):
+    def __init__(self, db_name="items.db"):
         self.db_name = db_name
-        self.db_location = "sqlite:///" + os.path.expanduser("~") +"/" + db_name
+        share_dir = os.path.expanduser("~") + "/.local/share/crydeer"
+        if not os.path.exists(share_dir):
+            os.mkdir(share_dir)
+        self.db_location = "sqlite:///" + share_dir +"/" + db_name
         self.engine = create_engine(self.db_location, echo=False)
         self.metadata = MetaData(self.engine)
         Session = sessionmaker(bind=self.engine)
